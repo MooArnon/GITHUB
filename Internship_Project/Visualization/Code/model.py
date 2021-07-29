@@ -85,3 +85,4 @@ def remaining_plot(contractor,kind):
     data_delay_contractor.plot(x='#Process', y='Remaining', kind=kind)
     plt.xticks(rotation=45)
     plt.show()
+
