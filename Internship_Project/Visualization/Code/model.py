@@ -86,3 +86,4 @@ def remaining_plot(contractor,kind):
     plt.xticks(rotation=45)
     plt.show()
 
+print("I'm done in this model")
