@@ -77,3 +77,11 @@ def plot_bell(data):
     plt.scatter( x, y, marker = 'o', s = 25, color = 'red')
     plt.title('Bell curve of %s' % data)
     plt.show()
+
+#* Delay bar plot
+def remaining_plot(contractor,kind):
+    data_delay = data1[['Contractors', 'Remaining', '#Process']]
+    data_delay_contractor = data_delay[data_delay['Contractors'] == contractor]
+    data_delay_contractor.plot(x='#Process', y='Remaining', kind=kind)
+    plt.xticks(rotation=45)
+    plt.show()
