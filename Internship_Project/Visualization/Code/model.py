@@ -8,11 +8,11 @@ import squarify
 import matplotlib
 from itertools import product
 
-data1 = pd.read_csv(r'/Users/moosmacm1/Data_science/Code/GITHUB/Intership_Project/Source/Test.csv')
+data1 = pd.read_csv(r'/Users/moosmacm1/Data_science/Code/GITHUB/GITHUB/Internship_Project/Visualization/Source/Test.csv')
 
 #* Categorized
 #by contractor
-data_contractor= data1.pivot_table(index=['Contractors','#Process'], values=['Remaining', 'Quanlity', 'Factor1', 'Factor2', 'Factor3'])
+data_contractor= data1.pivot_table(index=['Contractors','#Process'], values=['Remaining', 'Quality', 'Factor1', 'Factor2', 'Factor3'])
 
 #* Basic statistic
 # List of contractors
@@ -37,7 +37,7 @@ for i in contractors:
     score = []
     contractor_name.append(i)
 # group by contractors
-score_factors = ['Remaining', 'Quanlity', 'Factor1', 'Factor2', 'Factor3']
+score_factors = ['Remaining', 'Quality', 'Factor1', 'Factor2', 'Factor3']
 summary_score = data1.pivot_table(index='Contractors', values=score_factors, aggfunc='sum').reset_index()
 #adding weighted factor
 summary_score['Remaining'] = summary_score['Remaining']*5
@@ -83,7 +83,9 @@ def remaining_plot(contractor,kind):
     data_delay = data1[['Contractors', 'Remaining', '#Process']]
     data_delay_contractor = data_delay[data_delay['Contractors'] == contractor]
     data_delay_contractor.plot(x='#Process', y='Remaining', kind=kind)
+    plt.title('Contractor %s' % contractor)
     plt.xticks(rotation=45)
     plt.show()
 
+plot_bell('Quality')
 print("I'm done in this model")
