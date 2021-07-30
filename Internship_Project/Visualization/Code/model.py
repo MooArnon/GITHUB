@@ -1,3 +1,10 @@
+'''
+    This project was created this model in order to be used in 'Site eng. helping book'.
+        Dear site eng, who want to use this model. You have to install essential package below before use.
+        Dear developer, I'm actually new in this branch. I optimized my code to be easy to read.
+    However you can contact me anytime by oomarnon.000@kmutt.ac.th. Thank you guys who interested in my project.
+'''
+
 from numpy.lib.function_base import append
 import pandas as pd
 import numpy as np
@@ -86,6 +93,3 @@ def remaining_plot(contractor,kind):
     plt.title('Contractor %s' % contractor)
     plt.xticks(rotation=45)
     plt.show()
-
-plot_bell('Quality')
-print("I'm done in this model")
