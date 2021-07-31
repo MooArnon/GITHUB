@@ -21,13 +21,65 @@ def basic_properties(data):
 
 
 #** Customer address
-customer_address_column = ['state', 'country', 'property_valuation']
+customer_address_column_list = ['state', 'country', 'property_valuation']
 def customer_address_count_plot(data):
     for i in data:
         sns.countplot(data=customer_address, x=i)
         plt.title(i)
         plt.show()
 '''
-There have some same data but use differences key words, which Victoria is VIC and New South Wales is NSW. These mistake have to be changed
+OK for country and property values
+For state, there have some same data but use differences key words, which Victoria is VIC and New South Wales is NSW. These mistake have to be changed
 '''
 customer_address['state'] = customer_address['state'].replace({'New South Wales':'NSW', 'Victoria':'VIC'})      #OK
+
+
+#** Customer demographic
+#drop default column
+customer_demographic = customer_demographic.drop(columns='default')
+#fill missing values with NaN
+customer_demographic.fillna(method='ffill')
+print(customer_demographic)
+#use count plot to find outlirers
+demo_interested_col_list = ['gender', 'job_industry_category', 'wealth_segment', 'deceased_indicator', 'owns_car', 'tenure']
+def customer_demo_count_plot(data):
+    for i in data:
+        sns.countplot(data=customer_demographic, x=i)
+        plt.xticks(rotation=45)
+        plt.show() 
+#Gender: Femal and F is Female while M is male
+customer_demographic['gender'] = customer_demographic['gender'].replace({'Femal':'Female', 'F':'Female', 'M':'Male'}) #OK
+
+
+#** New customer lists
+#fill missing value
+new_customer_list = new_customer_list.fillna(method='ffill')
+#use count plot to find outlirers
+new_customer_col_list = ['gender', 'past_3_years_bike_related_purchases', 'job_industry_category', 
+                        'wealth_segment', 'owns_cars', 'state', 'country', 'property_valuation']
+def new_customer_count_plot(data):
+    for i in data:
+        sns.countplot(data=new_customer_list, x=i)
+        plt.xticks(rotation=90)
+        plt.show()
+#No mistake in this section
+
+#** Transaction
+transaction = transaction.fillna(method='ffill')
+##use count plot to find outlirers
+transaction_col_list = ['online_order', 'order_status', 'brand', 'product_line', 'product_class', 'product_size']
+def transaction_count_plot(data):
+    for i in data:
+        sns.countplot(data=transaction, x=i)
+        plt.xticks(rotation=90)
+        plt.show()
+#No mistake in this section
+
+
+#exprot data
+"""
+customer_address.to_csv('C_customer_address.csv')
+customer_demographic.to_csv('C_customer_demographic.csv')
+new_customer_list.to_csv('C_new_customer_list.csv')
+transaction.to_csv('C_transaction.csv')
+"""
