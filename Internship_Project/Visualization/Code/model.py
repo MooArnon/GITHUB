@@ -76,7 +76,7 @@ def plot_bell(data):
         std = np.std(x)
         y_out = 1/(std * np.sqrt(2 * np.pi)) * np.exp( - (x - mean)**2 / (2 * std**2))
         return y_out
-    x = data1['Remaining'].sort_values()
+    x = data1[data].sort_values()
     y = pdf(x)
     plt.style.use('seaborn')
     plt.figure(figsize = (6, 6))
@@ -93,3 +93,5 @@ def remaining_plot(contractor,kind):
     plt.title('Contractor %s' % contractor)
     plt.xticks(rotation=45)
     plt.show()
+
+
