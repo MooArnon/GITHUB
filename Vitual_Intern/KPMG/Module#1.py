@@ -20,6 +20,13 @@ assert customer_demographic['DOB'].max().date() <= today_date
 assert new_customer_list['DOB'].max().date() <= today_date
 assert transaction['transaction_date'].max().date() <= today_date
 
+today_date = dt.date.today().year
+#* Adding age column
+age_observing = [new_customer_list, customer_demographic]
+for i in age_observing:
+    i['DOB'] = pd.to_datetime(i['DOB'], errors='coerce')
+    i['birth_year'] = i['DOB'].dt.year
+    i['age'] = today_date - i['birth_year']
 
 data_list = [customer_address, customer_demographic, new_customer_list, transaction]
 def basic_properties(data):
@@ -89,10 +96,11 @@ def transaction_count_plot(data):
 
 
 #exprot data
-"""
-customer_address.to_csv('C_customer_address.csv')
-customer_demographic.to_csv('C_customer_demographic.csv')
-new_customer_list.to_csv('C_new_customer_list.csv')
-transaction.to_csv('C_transaction.csv')
-"""
+'''
+customer_address.to_csv('Cn_customer_address.csv')
+customer_demographic.to_csv('Cn_customer_demographic.csv')
+new_customer_list.to_csv('Cn_new_customer_list.csv')
+'''
+print(customer_demographic['gender'])
+
 print('No error')
